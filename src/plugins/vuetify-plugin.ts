@@ -1,15 +1,16 @@
 import '@mdi/font/css/materialdesignicons.css'
-import { createVuetify, type ThemeDefinition } from 'vuetify'
+import type { ThemeDefinition } from 'vuetify'
+import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { aliases, mdi } from 'vuetify/iconsets/mdi'
 import { VSkeletonLoader } from 'vuetify/labs/VSkeletonLoader'
 import 'vuetify/styles'
 
-const lightTheme: ThemeDefinition = {
+const theme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: '#00F55F',
+    primary: '#FFFFFF',
     secondary: '#FFC107',
     accent: '#FF4081',
     error: '#F44336',
@@ -30,30 +31,6 @@ const lightTheme: ThemeDefinition = {
   }
 }
 
-const darkTheme: ThemeDefinition = {
-  dark: true,
-  colors: {
-    primary: '#00F55F',
-    secondary: '#FFC107',
-    accent: '#FF4081',
-    error: '#F44336',
-    info: '#2196F3',
-    success: '#4CAF50',
-    warning: '#FF9800',
-    background: '#212121',
-    surface: '#37474F',
-    onPrimary: '#FFFFFF',
-    onSecondary: '#212121',
-    onAccent: '#FFFFFF',
-    onError: '#FFFFFF',
-    onInfo: '#FFFFFF',
-    onSuccess: '#FFFFFF',
-    onWarning: '#FFFFFF',
-    onBackground: '#FFFFFF',
-    onSurface: '#FFFFFF'
-  }
-}
-
 export function setupVuetify() {
   return createVuetify({
     components: {
@@ -62,10 +39,9 @@ export function setupVuetify() {
     },
     directives,
     theme: {
-      defaultTheme: 'dark',
+      defaultTheme: 'light',
       themes: {
-        light: lightTheme,
-        dark: darkTheme
+        light: theme
       }
     },
     icons: {
