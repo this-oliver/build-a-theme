@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import ThemeBtn from '@/components/btns/ThemeBtn.vue';
 import { useNavigationStore, useSidebarStore } from '@/stores';
 
 const drawer = useSidebarStore();
@@ -22,8 +21,6 @@ const navigation = useNavigationStore();
 
         <v-list-item-title>{{ option.label }}</v-list-item-title>
       </v-list-item>
-      
-      <theme-btn list-mode />
     </v-list>
   </v-navigation-drawer>
 

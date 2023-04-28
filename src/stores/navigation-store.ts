@@ -1,31 +1,32 @@
 import type { ActionItem } from '@/components/base/BaseCard.vue';
-import { useNotification } from '@/composables/useNotification';
 import { defineStore } from 'pinia';
+import { computed } from 'vue';
+import { useSidebarStore } from './sidebar-store';
+import { useThemeStore } from './theme-store';
 
 export const useNavigationStore = defineStore('navigation', () => {
-  const { notify } = useNotification();
-  
-  const options: ActionItem[] = [
-    { 
-      label: 'about',
-      icon: 'mdi-information-outline',
-      to: '/about'
-    },
-    { 
-      label: 'login',
-      icon: 'mdi-login',
-      action: () => {
-        notify('Nav Bar', 'Login clicked', 'success')
-      } 
-    },
-    { 
-      label: 'register',
-      icon: 'mdi-account-plus-outline',
-      action: () => {
-        notify('Nav Bar', 'Register clicked', 'success')
+  const themeStore = useThemeStore()
+  const sidebarStore = useSidebarStore()
+
+  const options = computed<ActionItem[]>(() => {
+    return [
+      {
+        label: 'Sidebar',
+        icon: sidebarStore.visible ? 'mdi-book-open-page-variant' : 'mdi-book-open-blank-variant',
+        action: () => sidebarStore.toggle()
+      },
+      {
+        label: 'Settings',
+        icon: 'mdi-cog',
+        to: '/settings'
+      },
+      {
+        label: 'Theme',
+        icon: themeStore.dark ? 'mdi-weather-night' : 'mdi-weather-sunny',
+        action: () => themeStore.setDarkMode(!themeStore.dark)
       }
-    }
-  ]
+    ]
+  })
 
   return {
     options

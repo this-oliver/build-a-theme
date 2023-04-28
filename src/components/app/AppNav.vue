@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
-import ThemeBtn from '@/components/btns/ThemeBtn.vue';
 import { useNavigationStore, useSidebarStore, useThemeStore } from '@/stores';
 import { computed } from 'vue';
 import { useDisplay } from 'vuetify';
@@ -49,9 +48,11 @@ const color = computed(() => {
         class="mx-1"
         @click="option.action">
         {{ option.label }}
+        <v-icon
+          v-if="option.icon"
+          :icon="option.icon"
+          class="ml-1"></v-icon>
       </base-btn>
-
-      <theme-btn class="mx-1" />
     </div>
   </v-app-bar>
 </template>
