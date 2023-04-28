@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
-import AppNav from './components/AppNav.vue';
-import AppSidebar from './components/AppSidebar.vue';
-import AppNotification from './components/AppNotification.vue';
-import AppFooter from './components/AppFooter.vue';
+import AppFooter from '@/components/app/AppFooter.vue';
+import AppNav from '@/components/app/AppNav.vue';
+import AppNotification from '@/components/app/AppNotification.vue';
+import AppSidebar from '@/components/app/AppSidebar.vue';
+import { RouterView } from 'vue-router';
 
 </script>
 

@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { useNavigationStore, useSidebarStore } from '@/stores';
+import AppLogo from '@/components/app/AppLogo.vue';
+import BaseBtn from '@/components/base/BaseBtn.vue';
+import ThemeBtn from '@/components/btns/ThemeBtn.vue';
+import { useNavigationStore, useSidebarStore, useThemeStore } from '@/stores';
 import { computed } from 'vue';
 import { useDisplay } from 'vuetify';
-import AppLogo from './AppLogo.vue';
-import BaseBtn from './base/BaseBtn.vue';
-import ThemeBtn from './btns/ThemeBtn.vue';
 
 const drawer = useSidebarStore();
 const navigation = useNavigationStore();
+const themeStore = useThemeStore();
 
 const { name } = useDisplay();
 
@@ -15,13 +16,17 @@ const isSmallScreen = computed(() => {
   return name.value === 'xs' || name.value === 'sm';
 });
 
+const color = computed(() => {
+  return themeStore.colors.find((color) => color.label === 'primary')?.value;
+})
+
 </script>
 
 <template>
   <v-app-bar
     app
     flat
-    color="primary"
+    :color="color"
     class="bar-container">
     <v-app-bar-nav-icon
       v-if="isSmallScreen"
@@ -60,6 +65,11 @@ const isSmallScreen = computed(() => {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.plain {
+  color: inherit;
+  text-decoration: none;
 }
 
 @media (min-width: 800px) {

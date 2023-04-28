@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import ThemeBtn from '@/components/btns/ThemeBtn.vue';
 import { useNavigationStore, useSidebarStore } from '@/stores';
-import ThemeBtn from './btns/ThemeBtn.vue';
 
 const drawer = useSidebarStore();
 const navigation = useNavigationStore();
