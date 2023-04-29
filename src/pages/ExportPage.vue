@@ -31,7 +31,7 @@ const themeStore = useThemeStore();
       </v-col>
 
       <v-col md="4">
-        <theme-config />
+        <theme-config read-only />
       </v-col>
     </v-row>
   </base-page>

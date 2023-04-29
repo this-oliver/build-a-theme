@@ -17,7 +17,7 @@ export interface Color {
 const useThemeStore = defineStore( 'theme', () => {
   const vTheme = useTheme()
 
-  const dark = computed<boolean>(() => vTheme.current.value.dark)
+  const dark = computed<boolean>(() => vTheme.global.name.value === 'dark')
 
   const allColors = computed<Color[]>(() => {
     return Object

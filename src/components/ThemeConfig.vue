@@ -5,6 +5,13 @@ import ThemeForm from '@/components/forms/ThemeForm.vue';
 import { useThemeStore } from '@/stores/theme-store';
 import { ref, watch } from 'vue';
 
+const props = defineProps({
+  readOnly: {
+    type: Boolean,
+    default: false
+  }
+});
+
 const themeStore = useThemeStore();
 
 const darkMode = ref<boolean>(themeStore.dark);
@@ -22,11 +29,12 @@ watch(darkMode, (value) => {
         outlined
         size="small"
         class="mr-1 mt-1"
+        :disabled="props.readOnly"
         @click="darkMode = !darkMode">
         <p>
-          {{ darkMode ? 'Dark Mode' : 'Light Mode' }}
+          Toggle {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
           <v-icon
-            :icon="darkMode ? 'mdi-weather-night' : 'mdi-white-balance-sunny'"
+            :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
             size="small"
             class="mx-1"/>
         </p>
@@ -38,7 +46,7 @@ watch(darkMode, (value) => {
         v-for="color in themeStore.colors"
         :key="color"
         cols="6">
-        <theme-form :color="color" />
+        <theme-form :color="color"/>
       </v-col>
     </v-row>
   </content-card>

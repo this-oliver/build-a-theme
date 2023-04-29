@@ -11,6 +11,10 @@ const props = defineProps({
   color: {
     type: Object as PropType<Color>,
     required: true
+  },
+  readOnly: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -21,8 +25,8 @@ function setColor(){
   themeStore.setColor(props.color.label, hex.value);
 }
 
-function activate(){
-  active.value = true;
+function toggleActivate(){
+  active.value = !active.value;
 }
 
 function deactivate(){
@@ -38,7 +42,8 @@ function deactivate(){
       <base-btn
         block
         :color="hex"
-        @click="activate">
+        :disabled="props.readOnly"
+        @click="toggleActivate">
         {{ props.color.label }}
       </base-btn>
       <small>{{ hex }}</small>
