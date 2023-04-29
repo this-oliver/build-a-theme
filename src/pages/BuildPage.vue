@@ -4,6 +4,9 @@ import BasePage from '@/components/base/BasePage.vue';
 import DemoButtons from '@/components/demo/DemoButtons.vue';
 import DemoCards from '@/components/demo/DemoCards.vue';
 import DemoInputText from '@/components/demo/DemoInputText.vue';
+import { useThemeStore } from '@/stores/theme-store';
+
+const themeStore = useThemeStore();
 
 </script>
 
@@ -23,9 +26,15 @@ import DemoInputText from '@/components/demo/DemoInputText.vue';
       <v-col
         id="demo-items"
         md="7">
-        <demo-buttons id="demo-item-button" />
-        <demo-cards id="demo-item-card" />
-        <demo-input-text id="demo-item-input-text" />
+        <demo-buttons
+          id="demo-item-button"
+          :colors="themeStore.colors" />
+        <demo-cards
+          id="demo-item-card"
+          :colors="themeStore.colors"/>
+        <demo-input-text
+          id="demo-item-input-text"
+          :colors="themeStore.colors"/>
       </v-col>
     </v-row>
   </base-page>

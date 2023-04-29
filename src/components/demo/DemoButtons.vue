@@ -2,11 +2,18 @@
 import type { ContentAction } from '@/components/cards/ContentCard.vue';
 import ContentCard from '@/components/cards/ContentCard.vue';
 import { useVuetifyOptions } from '@/composables/useVuetifyOptions';
-import { useThemeStore } from '@/stores/theme-store';
+import type { Color } from '@/stores/theme-store';
+import type { PropType } from 'vue';
 import { computed } from 'vue';
 
+const props = defineProps({
+  colors: {
+    type: Array as PropType<Color[]>,
+    required: true
+  }
+});
+
 const { options, variant, disabled, loading, toggleOption } = useVuetifyOptions();
-const { colors } = useThemeStore();
 
 const actions = computed<ContentAction[]>(() => {
   return options.value.map(option => {
@@ -26,7 +33,7 @@ const actions = computed<ContentAction[]>(() => {
 
     <v-row>
       <v-col
-        v-for="color in colors"
+        v-for="color in props.colors"
         :key="color"
         md="3">
         <v-btn

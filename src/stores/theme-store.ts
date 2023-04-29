@@ -15,17 +15,17 @@ export interface Color {
 }
 
 const useThemeStore = defineStore( 'theme', () => {
-  const vuetifyTheme = useTheme()
+  const vTheme = useTheme()
 
-  const dark = computed<boolean>(() => vuetifyTheme.current.value.dark)
+  const dark = computed<boolean>(() => vTheme.current.value.dark)
 
   const allColors = computed<Color[]>(() => {
     return Object
-      .keys(vuetifyTheme.current.value.colors)
+      .keys(vTheme.current.value.colors)
       .map(key => {
         return {
           label: key,
-          value: vuetifyTheme.current.value.colors[key] || ''
+          value: vTheme.current.value.colors[key] || ''
         }
       })
   })
@@ -39,19 +39,19 @@ const useThemeStore = defineStore( 'theme', () => {
   
   function setColor(color: string, value: string): void {
     // get name of current theme
-    const themeName = vuetifyTheme.global.name.value;
+    const themeName = vTheme.global.name.value;
     // get theme object
-    const theme = vuetifyTheme.themes.value[themeName];
+    const theme = vTheme.themes.value[themeName];
     // set color
     theme.colors[color] = value;
     // override theme
-    vuetifyTheme.themes.value[themeName] = theme;
+    vTheme.themes.value[themeName] = theme;
     // force update
-    vuetifyTheme.global.name.value = themeName;
+    vTheme.global.name.value = themeName;
   }
 
   function setDarkMode(dark: boolean): void {
-    vuetifyTheme.global.name.value = dark ? 'dark' : 'light';
+    vTheme.global.name.value = dark ? 'dark' : 'light';
   }
 
   return {
