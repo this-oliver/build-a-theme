@@ -6,6 +6,9 @@ import type { Color } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed, ref } from 'vue';
 
+const DemoTitle = 'Input Text';
+const DemoDescription = 'Text fields are used to collect text-based user input. Try toggling the options below to see how they affect the cards.';
+
 const props = defineProps({
   colors: {
     type: Array as PropType<Color[]>,
@@ -30,7 +33,8 @@ const actions = computed<ContentAction[]>(() => {
 
 <template>
   <content-card
-    title="Text Field"
+    :title="DemoTitle"
+    :description="DemoDescription"
     :actions="actions">
 
     <v-row

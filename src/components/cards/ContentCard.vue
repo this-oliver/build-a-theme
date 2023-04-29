@@ -27,7 +27,9 @@ const props = defineProps({
 
 <template>
   <v-row no-gutters>
-    <v-col>
+    <v-divider class="border-opacity-50"></v-divider>
+
+    <v-col class="mt-2 mt-md-0">
       <slot name="title">
         <h2>{{ props.title }}</h2>
       </slot>
@@ -37,18 +39,29 @@ const props = defineProps({
     
     <v-col>
       <slot name="description">
-        <h2>{{ props.description }}</h2>
+        <v-row
+          v-if="props.description"
+          align="center">
+          <v-col cols="1">
+            <v-icon icon="mdi-information-outline"></v-icon>
+          </v-col>
+          <v-col>
+            <p class="mt-2">{{ props.description }}</p>
+          </v-col>
+        </v-row>
       </slot>
     </v-col>
 
-    <v-col>
+    <v-divider class="border-opacity-0"></v-divider>
+
+    <v-col class="mt-2">
       <slot name="options">
         <base-btn
           v-for="action in actions"
           :key="action.option.label"
           class="mr-1 mt-1"
-          size="small"
           :outlined="action.option.value"
+          size="small"
           @click="action.toggle">
           <span :style="`font-weight: ${action.option.value ? 'bold' : 'normal'};`">{{ action.option.label }}</span>
         </base-btn>

@@ -6,6 +6,9 @@ import type { Color } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed } from 'vue';
 
+const DemoTitle = 'Buttons';
+const DemoDescription = 'Buttons are used to trigger an action. Try toggling the options below to see how they affect the cards.';
+
 const props = defineProps({
   colors: {
     type: Array as PropType<Color[]>,
@@ -28,7 +31,8 @@ const actions = computed<ContentAction[]>(() => {
 
 <template>
   <content-card
-    title="Buttons"
+    :title="DemoTitle"
+    :description="DemoDescription"
     :actions="actions">
 
     <v-row>

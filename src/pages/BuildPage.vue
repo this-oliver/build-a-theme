@@ -41,10 +41,6 @@ const themeStore = useThemeStore();
 </template>
 
 <style>
-#demo-items > * {
-  padding: 1rem;
-}
-
 @media (min-width: 600px) {
   #demo-theme {
     overflow-y: hidden;
@@ -60,6 +56,10 @@ const themeStore = useThemeStore();
     /* hide scrollbar */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  #demo-item-card, #demo-item-input-text {
+    padding-top: 5vh;
   }
 }
 </style>
