@@ -1,4 +1,4 @@
-# `Theme-Builder`
+# `Build-a-Theme`
 
 A quick and easy way to try out themes for websites built with Material Design as the underlying design language.
 
@@ -6,8 +6,11 @@ A quick and easy way to try out themes for websites built with Material Design a
 
 - [x] Modify the theme colors 🖍️
 - [x] Copy theme to clipboard 📋
-- [ ] Import theme 📦
-- [ ] Store changes in local storage 💾
+- [x] Export theme as Vuetify `ThemeDefinition` 📦
+
+Notes:
+
+- support will be added for other frameworks on a need/request basis
 
 ## License
 

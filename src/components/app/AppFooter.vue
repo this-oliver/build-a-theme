@@ -7,7 +7,7 @@ interface FooterLink {
 
 const links: FooterLink[] = [
   { text: 'Oliverrr', url: 'https://wwww.oliverrr.net' },
-  { text: 'GitHub (source code)', url: 'https://github.com/this-oliver/theme-builder' }
+  { text: 'GitHub (source code)', url: 'https://github.com/this-oliver/build-a-theme' }
 ]
 
 </script>
