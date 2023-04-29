@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import DemoButtons from '@/components/DemoButtons.vue';
-import DemoCards from '@/components/DemoCards.vue';
 import ThemeConfig from '@/components/ThemeConfig.vue';
 import BasePage from '@/components/base/BasePage.vue';
+import DemoButtons from '@/components/demo/DemoButtons.vue';
+import DemoCards from '@/components/demo/DemoCards.vue';
 
 </script>
 
@@ -30,6 +30,9 @@ import BasePage from '@/components/base/BasePage.vue';
 </template>
 
 <style>
+#demo-items > * {
+  padding: 1rem;
+}
 
 @media (min-width: 600px) {
   #demo-theme {
