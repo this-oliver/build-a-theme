@@ -5,7 +5,7 @@ A quick and easy way to try out themes for websites built with Material Design a
 ## Features
 
 - [x] Modify the theme colors 🖍️
-- [ ] Copy theme to clipboard 📋
+- [x] Copy theme to clipboard 📋
 - [ ] Import theme 📦
 - [ ] Store changes in local storage 💾
 
