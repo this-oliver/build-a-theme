@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
-import BaseDemo from '@/components/cards/DemoCard.vue';
+import ContentCard from '@/components/cards/ContentCard.vue';
 import ThemeForm from '@/components/forms/ThemeForm.vue';
 import { useThemeStore } from '@/stores/theme-store';
 import { ref, watch } from 'vue';
@@ -16,7 +16,7 @@ watch(darkMode, (value) => {
 </script>
 
 <template>
-  <base-demo title="Theme">
+  <content-card title="Theme">
     <template #options>
       <base-btn
         :outlined="darkMode"
@@ -37,9 +37,9 @@ watch(darkMode, (value) => {
       <v-col
         v-for="color in themeStore.colors"
         :key="color"
-        md="3">
+        md="6">
         <theme-form :color="color" />
       </v-col>
     </v-row>
-  </base-demo>
+  </content-card>
 </template>

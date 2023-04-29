@@ -47,7 +47,7 @@ function deactivate(){
     <v-navigation-drawer
       :model-value="active"
       :permanent="true"
-      location="right"
+      location="left"
       width="100%"
       class="px-1"
       @update:modelValue="deactivate">

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import BaseCard from '@/components/base/BaseCard.vue';
-import BaseDemo from '@/components/cards/DemoCard.vue';
+import ContentCard from '@/components/cards/ContentCard.vue';
 import { useThemeStore } from '@/stores/theme-store';
 import { ref } from 'vue';
 
@@ -33,7 +33,7 @@ const cardOptions = ref([
 </script>
 
 <template>
-  <base-demo title="Cards">
+  <content-card title="Cards">
     <template #options>
       <base-btn
         v-for="option in cardOptions"
@@ -73,5 +73,5 @@ const cardOptions = ref([
         </base-card>
       </v-col>
     </v-row>
-  </base-demo>
+  </content-card>
 </template>

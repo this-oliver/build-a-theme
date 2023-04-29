@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
-import BaseDemo from '@/components/cards/DemoCard.vue';
+import ContentCard from '@/components/cards/ContentCard.vue';
 import { useThemeStore } from '@/stores/theme-store';
 import { ref } from 'vue';
 
@@ -43,7 +43,7 @@ const btnOptions = ref([
 </script>
 
 <template>
-  <base-demo title="Buttons">
+  <content-card title="Buttons">
     <template #options>
       <base-btn
         v-for="option in btnOptions"
@@ -72,7 +72,7 @@ const btnOptions = ref([
           class="button">{{ color.label }}</base-btn>
       </v-col>
     </v-row>
-  </base-demo>
+  </content-card>
 </template>
 
 <style scoped>
