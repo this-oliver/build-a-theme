@@ -7,7 +7,7 @@ import BasePage from '@/components/base/BasePage.vue';
 </script>
 
 <template>
-  <base-page title="Theme Builder">
+  <base-page title="Build Theme">
     <v-row
       id="demo"
       justify="center"

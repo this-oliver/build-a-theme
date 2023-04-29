@@ -16,7 +16,7 @@ const themeStore = useThemeStore();
       justify-md="space-between">
       
       <v-col md="7">
-        <content-card title="Config">
+        <content-card title="Theme">
           <template #options>
             <p>
               The snippet below is the config object that is used to generate the theme in this demo. You can
