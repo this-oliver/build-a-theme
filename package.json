@@ -2,7 +2,7 @@
   "name": "theme-builder",
   "description": "Try out colors for your Vuetify theme",
   "repository": "this-oliver/theme-builder",
-  "version": "0.6.4",
+  "version": "0.6.5",
   "private": true,
   "scripts": {
     "dev": "vite",

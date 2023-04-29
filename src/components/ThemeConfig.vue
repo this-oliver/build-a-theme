@@ -2,8 +2,9 @@
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import ContentCard from '@/components/cards/ContentCard.vue';
 import ThemeForm from '@/components/forms/ThemeForm.vue';
+import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const props = defineProps({
   readOnly: {
@@ -16,6 +17,10 @@ const themeStore = useThemeStore();
 
 const darkMode = ref<boolean>(themeStore.dark);
 
+const colors = computed<Color[]>(() => {
+  return themeStore.standardColors;
+});
+
 watch(darkMode, (value) => {
   themeStore.setDarkMode(value);
 })
@@ -26,26 +31,20 @@ watch(darkMode, (value) => {
   <content-card title="Config">
     <template #options>
       <base-btn
-        outlined
+        :outlined="darkMode"
         size="small"
         class="mr-1 mt-1"
         :disabled="props.readOnly"
         @click="darkMode = !darkMode">
-        <p>
-          Toggle {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
-          <v-icon
-            :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
-            size="small"
-            class="mx-1"/>
-        </p>
+        Toggle {{ darkMode ? 'light mode' : 'dark mode' }}
       </base-btn>
     </template>
     
     <v-row>
       <v-col
-        v-for="color in themeStore.colors"
+        v-for="color in colors"
         :key="color"
-        cols="6">
+        :cols="6">
         <theme-form :color="color"/>
       </v-col>
     </v-row>

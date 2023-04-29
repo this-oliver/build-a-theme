@@ -30,11 +30,20 @@ const useThemeStore = defineStore( 'theme', () => {
       })
   })
 
+  const standardColors = computed<Color[]>(() => {
+    // filter out all colors that start with 'on' (case insensitive)
+    return allColors.value
+      .filter(color => {
+        return !color.label.match(/^on/i) && !color.label.includes('-')
+      });
+  })
+
   const colors = computed<Color[]>(() => {
-    return allColors.value.filter(color => {
-      // filter out all colors that start with 'on' (case insensitive)
-      return !color.label.match(/^on/i) && !color.label.includes('-')
-    })
+    // filter out background and surface colors
+    return standardColors.value
+      .filter(color => {
+        return color.label !== 'background' && color.label !== 'surface'
+      });
   })
   
   function setColor(color: string, value: string): void {
@@ -57,6 +66,7 @@ const useThemeStore = defineStore( 'theme', () => {
   return {
     dark,
     colors,
+    standardColors,
     allColors,
     setColor,
     setDarkMode
