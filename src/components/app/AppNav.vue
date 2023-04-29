@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import AppLogo from '@/components/app/AppLogo.vue';
 import BaseBtn from '@/components/base/BaseBtn.vue';
-import { useNavigationStore, useSidebarStore, useThemeStore } from '@/stores';
+import { useNavigationStore } from '@/stores/navigation-store';
+import { useSidebarStore } from '@/stores/sidebar-store';
+import { useThemeStore } from '@/stores/theme-store';
 import { computed } from 'vue';
 import { useDisplay } from 'vuetify';
 

@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import BaseBtn from '@/components/base/BaseBtn.vue';
 import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { ref } from 'vue';
-import BaseBtn from '../base/BaseBtn.vue';
 
 const themeStore = useThemeStore();
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { useNavigationStore, useSidebarStore } from '@/stores';
+import { useNavigationStore } from '@/stores/navigation-store';
+import { useSidebarStore } from '@/stores/sidebar-store';
 
 const drawer = useSidebarStore();
 const navigation = useNavigationStore();

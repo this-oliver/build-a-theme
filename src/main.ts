@@ -1,5 +1,6 @@
-import { setupPinia, setupVuetify } from '@/plugins'
 import { createApp } from 'vue'
+import { setupPinia } from './plugins/pinia-plugin'
+import { setupVuetify } from './plugins/vuetify-plugin'
 
 import App from './App.vue'
 import router from './router'
