@@ -1,4 +1,4 @@
-import BuildPage from '@/pages/BuildPage.vue'
+import LandingPage from '@/pages/LandingPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -6,8 +6,13 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'landing',
+      component: LandingPage
+    },
+    {
+      path: '/build',
       name: 'build',
-      component: BuildPage
+      component: () => import('@/pages/BuildPage.vue')
     },
     {
       path: '/export',

@@ -7,6 +7,11 @@ export const useNavigationStore = defineStore('navigation', () => {
   const options = computed<ActionItem[]>(() => {
     return [
       {
+        label: 'Build Theme',
+        icon: 'mdi-palette',
+        to: '/build'
+      },
+      {
         label: 'Export Theme',
         icon: 'mdi-export-variant',
         to: '/export'

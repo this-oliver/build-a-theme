@@ -10,7 +10,7 @@ import 'vuetify/styles'
 const theme: ThemeDefinition = {
   dark: false,
   colors: {
-    primary: '#FFFFFF',
+    primary: '#50A6FF',
     secondary: '#FFC107',
     accent: '#FF4081',
     error: '#F44336',
