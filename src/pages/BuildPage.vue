@@ -3,6 +3,7 @@ import ThemeConfig from '@/components/ThemeConfig.vue';
 import BasePage from '@/components/base/BasePage.vue';
 import DemoButtons from '@/components/demo/DemoButtons.vue';
 import DemoCards from '@/components/demo/DemoCards.vue';
+import DemoInputText from '@/components/demo/DemoInputText.vue';
 
 </script>
 
@@ -24,6 +25,7 @@ import DemoCards from '@/components/demo/DemoCards.vue';
         md="7">
         <demo-buttons id="demo-item-button" />
         <demo-cards id="demo-item-card" />
+        <demo-input-text id="demo-item-input-text" />
       </v-col>
     </v-row>
   </base-page>
