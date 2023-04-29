@@ -2,9 +2,8 @@
 import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import BaseBtn from '../base/BaseBtn.vue';
-import BaseCard from '../base/BaseCard.vue';
 
 const themeStore = useThemeStore();
 
@@ -17,10 +16,6 @@ const props = defineProps({
 
 const hex = ref<string>(props.color.value);
 const active = ref<boolean>(false);
-
-const label = computed<string>(() => {
-  return `${props.color.label} ${hex.value}`;
-})
 
 function setColor(){
   themeStore.setColor(props.color.label, hex.value);
@@ -38,46 +33,54 @@ function deactivate(){
 </script>
 
 <template>
-  <base-card v-if="active">
-    <v-row
-      align="center"
-      justify="space-between">
-      <v-col cols="auto">
-        <span>{{ label }}</span>
-      </v-col>
-
-      <v-col cols="auto">
-        <base-btn
-          small
-          @click="deactivate">
-          <v-icon icon="mdi-close"></v-icon>
-        </base-btn>
-      </v-col>
-    </v-row>
-  
-    <v-color-picker
-      v-model="hex"
-      mode="hexa"
-      elevation="0"
-      class="mt-2"/>
-
-    <v-card-actions>
+  <div>
+    <div>
       <base-btn
         block
         :color="hex"
+        @click="activate">
+        {{ props.color.label }}
+      </base-btn>
+      <small>{{ hex }}</small>
+    </div>
+  
+    <v-navigation-drawer
+      :model-value="active"
+      :permanent="true"
+      location="right"
+      width="100%"
+      class="px-1"
+      @update:modelValue="deactivate">
+      <v-row
+        align="center"
+        justify="space-between"
+        class="px-1">
+        <v-col cols="auto">
+          <h3>{{ props.color.label }}</h3>
+        </v-col>
+  
+        <v-col cols="auto">
+          <base-btn
+            small
+            @click="deactivate">
+            <v-icon icon="mdi-close"></v-icon>
+          </base-btn>
+        </v-col>
+      </v-row>
+    
+      <v-color-picker
+        v-model="hex"
+        mode="hexa"
+        elevation="0"
+        class="mt-2"/>
+
+      <base-btn
+        block
+        :color="hex"
+        class="mt-2"
         @click="setColor">
         Set Color
       </base-btn>
-    </v-card-actions>
-  </base-card>
-
-  <div v-else>
-    <base-btn
-      block
-      :color="hex"
-      @click="activate">
-      {{ props.color.label }}
-    </base-btn>
-    <small>{{ hex }}</small>
+    </v-navigation-drawer>
   </div>
 </template>

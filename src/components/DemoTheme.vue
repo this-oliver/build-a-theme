@@ -23,7 +23,13 @@ watch(darkMode, (value) => {
         size="small"
         class="mr-1 mt-1"
         @click="darkMode = !darkMode">
-        {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
+        <span>
+          {{ darkMode ? 'Light Mode' : 'Dark Mode' }}
+        </span>
+        <v-icon
+          :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"
+          size="small"
+          class="mx-1"/>
       </base-btn>
     </template>
     
@@ -31,7 +37,7 @@ watch(darkMode, (value) => {
       <v-col
         v-for="color in themeStore.colors"
         :key="color"
-        md="auto">
+        md="3">
         <theme-form :color="color" />
       </v-col>
     </v-row>
