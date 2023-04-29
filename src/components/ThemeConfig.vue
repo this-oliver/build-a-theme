@@ -36,7 +36,19 @@ watch(darkMode, (value) => {
         class="mr-1 mt-1"
         :disabled="props.readOnly"
         @click="darkMode = !darkMode">
-        Toggle {{ darkMode ? 'light mode' : 'dark mode' }}
+        <p>
+          Toggle {{ darkMode ? 'light mode' : 'dark mode' }}
+          <v-icon :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"/>
+        </p>
+      </base-btn>
+
+      <base-btn
+        size="small"
+        class="mr-1 mt-1"
+        :disabled="props.readOnly"
+        @click="themeStore.randomTheme">
+        Random theme
+        <v-icon icon="mdi-dice-5-outline"/>
       </base-btn>
     </template>
     

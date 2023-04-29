@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
+import type { ThemeDefinition } from 'vuetify';
 import { useTheme } from 'vuetify';
 
 //function forceUpdate(){
@@ -48,13 +49,13 @@ const useThemeStore = defineStore( 'theme', () => {
   
   function setColor(color: string, value: string): void {
     // get name of current theme
-    const themeName = vTheme.global.name.value;
+    const themeName = _getCurrentThemeName();
     // get theme object
-    const theme = vTheme.themes.value[themeName];
+    const theme = _getTheme(themeName);
     // set color
-    theme.colors[color] = value;
+    theme.colors![color] = value;
     // override theme
-    vTheme.themes.value[themeName] = theme;
+    vTheme.themes.value[themeName] = theme as any; // can't assign to InternalThemeDefinition
     // force update
     vTheme.global.name.value = themeName;
   }
@@ -63,13 +64,31 @@ const useThemeStore = defineStore( 'theme', () => {
     vTheme.global.name.value = dark ? 'dark' : 'light';
   }
 
+  function _getCurrentThemeName(): string {
+    return vTheme.global.name.value;
+  }
+
+  function _getTheme(name?: string): ThemeDefinition {
+    return name ? vTheme.themes.value[name] : vTheme.global.current.value;
+  }
+
+  function randomTheme(): void {
+    setColor('background', `#${_getRandomHex()}`);
+    setColor('surface', `#${_getRandomHex()}`);
+  }
+
+  function _getRandomHex(): string {
+    return Math.floor(Math.random() * 16777215).toString(16);
+  }
+
   return {
     dark,
     colors,
     standardColors,
     allColors,
     setColor,
-    setDarkMode
+    setDarkMode,
+    randomTheme
   }
 });
 
