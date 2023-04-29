@@ -16,7 +16,7 @@ export interface Color {
 
 const useThemeStore = defineStore( 'theme', () => {
   const vuetifyTheme = useTheme()
-  
+
   const dark = computed<boolean>(() => vuetifyTheme.current.value.dark)
 
   const allColors = computed<Color[]>(() => {

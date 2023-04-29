@@ -9,8 +9,10 @@ const router = createRouter({
       name: 'demo',
       component: DemoPage
     },
-      name: 'theme',
-      component: BuildPage
+    {
+      path: '/export',
+      name: 'export',
+      component: () => import('@/pages/ExportPage.vue')
     },
     {
       path: '/:pathMatch(.*)*',
