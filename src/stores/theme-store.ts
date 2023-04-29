@@ -41,10 +41,12 @@ const useThemeStore = defineStore( 'theme', () => {
 
   const colors = computed<Color[]>(() => {
     // filter out background and surface colors
-    return standardColors.value
+    const color = standardColors.value
       .filter(color => {
         return color.label !== 'background' && color.label !== 'surface'
       });
+
+    return [ { label: 'baseline', value: '' }, ...color ];
   })
   
   function setColor(color: string, value: string): void {

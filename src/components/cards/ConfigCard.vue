@@ -30,6 +30,8 @@ const theme = computed<ThemeDefinition>(() => {
   props.colors.forEach((color) => {
     themeObj.colors![color.label] = color.value;
   });
+  
+  delete themeObj.colors!.baseline;
 
   return themeObj;
 });
