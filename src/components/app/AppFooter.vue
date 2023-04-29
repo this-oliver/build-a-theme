@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { useThemeStore } from '@/stores/theme-store';
-import { computed } from 'vue';
-
-const themeStore = useThemeStore();
-
-const color = computed(() => {
-  return themeStore.colors.find((color) => color.label === 'surface')?.value || 'error';
-})
-
 </script>
 
 <template>
-  <v-footer
-    app
-    :color="color">
-    <span>&copy; footer example</span>
+  <v-footer app>
+    <p>Built with ☕️ by <a
+      href="https://www.oliverrr.net"
+      target="_blank">this-oliverrr</a></p>
   </v-footer>
 </template>

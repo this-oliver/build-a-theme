@@ -7,7 +7,7 @@ import ThemeDemo from '@/components/DemoTheme.vue';
 </script>
 
 <template>
-  <base-page>
+  <base-page title="Theme Builder">
     <theme-demo />
     <button-demo />
     <card-demo />

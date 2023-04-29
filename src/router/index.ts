@@ -1,4 +1,4 @@
-import ThemePage from '@/pages/ThemePage.vue'
+import BuildPage from '@/pages/BuildPage.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'theme',
-      component: ThemePage
+      component: BuildPage
     },
     {
       path: '/:pathMatch(.*)*',
