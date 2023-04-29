@@ -110,21 +110,26 @@ const icons: Icons[] = [
 </template>
 
 <style scoped>
+#landing-header {
+  padding-top: 5vh;
+}
+
+#landing-header h2 {
+  font-weight: 400;
+}
 
 @media (min-width: 600px) {
   #landing-header {
     padding-top: 10vh;
   }
-
+  
   #landing-header h1 {
     font-size: 3rem;
   }
-
+  
   #landing-header h2 {
     font-size: 1.5rem;
-    font-weight: 400;
   }
-
   #landing-tips {
     padding-top: 5vh;
   }

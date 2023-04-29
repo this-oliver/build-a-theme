@@ -17,7 +17,7 @@ import { RouterView } from 'vue-router';
       <app-notification />
       <v-container>
         <v-row justify="center">
-          <v-col cols="11">
+          <v-col md="11">
             <router-view />
           </v-col>
         </v-row>
