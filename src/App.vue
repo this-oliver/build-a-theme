@@ -13,7 +13,7 @@ import { RouterView } from 'vue-router';
     <app-nav />
     <app-sidebar />
     
-    <v-main>
+    <v-main id="app-content">
       <app-notification />
       <v-container>
         <v-row justify="center">
@@ -27,3 +27,15 @@ import { RouterView } from 'vue-router';
     <app-footer />
   </v-app>
 </template>
+
+<style>
+  #app-content {
+    margin-bottom: 10vh;
+  }
+
+  @media (min-width: 600px) {
+    #app-content {
+      margin-bottom: 0;
+    }
+  }
+</style>

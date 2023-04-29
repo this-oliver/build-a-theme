@@ -74,7 +74,9 @@ const icons: Icons[] = [
 
       <v-divider class="border-opacity-0"></v-divider>
 
-      <v-col md="6">
+      <v-col
+        cols="auto"
+        md="6">
         <base-btn
           class="mt-2"
           block
@@ -86,8 +88,10 @@ const icons: Icons[] = [
       </v-col>
     </v-row>
 
-    <v-row id="landing-tips-general">
-      <v-col cols="11">
+    <v-row id="landing-tips">
+      <v-col
+        class="text-center"
+        cols="11">
         <h2>General Tips</h2>
       </v-col>
 
@@ -120,7 +124,7 @@ const icons: Icons[] = [
 
 @media (min-width: 600px) {
   #landing-header {
-    padding-top: 10vh;
+    padding-top: 5vh;
   }
   
   #landing-header h1 {
@@ -130,8 +134,9 @@ const icons: Icons[] = [
   #landing-header h2 {
     font-size: 1.5rem;
   }
+  
   #landing-tips {
-    padding-top: 5vh;
+    padding-top: 2.5vh;
   }
 
   .tip-card {
