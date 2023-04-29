@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useThemeStore } from '@/stores/theme-store';
 import { javascript } from '@codemirror/lang-javascript';
 import { computed, ref } from 'vue';
 import { Codemirror } from 'vue-codemirror';
@@ -14,6 +15,8 @@ const props = defineProps({
   }
 })
 
+const themeStore = useThemeStore();
+
 const code = ref(props.code);
 
 const extensions = computed(() => {
@@ -26,13 +29,21 @@ const extensions = computed(() => {
   return base;
 })
 
+const color = computed(() => {
+  return themeStore.dark ? 'grey-darken-3' : 'grey-lighten-4';
+})
+
 </script>
 
 <template>
-  <codemirror
-    v-model="code"
-    :disabled="true"
-    :tab-size="2"
-    :indent-with-tab="true"
-    :extensions="extensions"/>
+  <v-sheet
+    class="pa-1"
+    :color="color">
+    <codemirror
+      v-model="code"
+      :disabled="true"
+      :tab-size="2"
+      :indent-with-tab="true"
+      :extensions="extensions"/>
+  </v-sheet>
 </template>
