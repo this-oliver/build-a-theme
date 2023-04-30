@@ -60,11 +60,12 @@ watch(darkMode, (value) => {
       </base-btn>
     </template>
     
-    <v-row>
+    <v-row justify="center">
       <v-col
         v-for="color in colors"
         :key="color.label"
-        :cols="allColors ? 11 : 6">
+        cols="11"
+        :md="allColors ? 11 : 6">
         <theme-form :color="color"/>
       </v-col>
     </v-row>
