@@ -2,9 +2,8 @@
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import ContentCard from '@/components/cards/ContentCard.vue';
 import ThemeForm from '@/components/forms/ThemeForm.vue';
-import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
-import { computed, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 const props = defineProps({
   readOnly: {
@@ -16,10 +15,6 @@ const props = defineProps({
 const themeStore = useThemeStore();
 
 const darkMode = ref<boolean>(themeStore.dark);
-
-const colors = computed<Color[]>(() => {
-  return themeStore.standardColors;
-});
 
 watch(darkMode, (value) => {
   themeStore.setDarkMode(value);
@@ -54,7 +49,7 @@ watch(darkMode, (value) => {
     
     <v-row>
       <v-col
-        v-for="color in colors"
+        v-for="color in themeStore.standardColors"
         :key="color.label"
         :cols="6">
         <theme-form :color="color"/>

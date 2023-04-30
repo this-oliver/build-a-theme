@@ -3,7 +3,7 @@ import BaseBtn from '@/components/base/BaseBtn.vue';
 import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const themeStore = useThemeStore();
 
@@ -35,6 +35,10 @@ function deactivate(){
   hex.value = props.color.value;
 }
 
+watch(() => props.color.value, (value) => {
+  hex.value = value;
+})
+
 </script>
 
 <template>
@@ -42,12 +46,12 @@ function deactivate(){
     <div>
       <base-btn
         block
-        :color="hex"
+        :color="props.color.value"
         :disabled="props.readOnly"
         @click="toggleActivate">
         {{ props.color.label }}
       </base-btn>
-      <small>{{ hex }}</small>
+      <small>{{ props.color.value }}</small>
     </div>
   
     <v-navigation-drawer

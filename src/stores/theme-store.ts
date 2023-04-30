@@ -24,12 +24,14 @@ const useThemeStore = defineStore( 'theme', () => {
   const dark = computed<boolean>(() => vTheme.global.name.value === 'dark')
 
   const allColors = computed<Color[]>(() => {
+    const colors = vTheme.global.current.value.colors;
+    
     return Object
-      .keys(vTheme.global.current.value.colors)
+      .keys(colors)
       .map(key => {
         return {
           label: key,
-          value: vTheme.current.value.colors[key] || ''
+          value: colors[key] || ''
         }
       })
   })
