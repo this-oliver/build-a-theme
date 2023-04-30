@@ -23,6 +23,7 @@ const active = ref<boolean>(false);
 
 function setColor(){
   themeStore.setColor(props.color.label, hex.value);
+  deactivate();
 }
 
 function toggleActivate(){
