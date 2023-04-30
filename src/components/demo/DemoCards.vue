@@ -40,12 +40,12 @@ const actions = computed<ContentAction[]>(() => {
       justify-md="start">
       <v-col
         v-for="color in props.colors"
-        :key="color"
+        :key="color.label"
         cols="12"
         md="4">
         <v-card
           :color="color.value"
-          :variant="variant"
+          :variant="(variant as any)"
           :disabled="disabled"
           :loading="loading"
           style="width: 100%;">

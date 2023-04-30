@@ -42,14 +42,14 @@ const actions = computed<ContentAction[]>(() => {
       justify-md="start">
       <v-col
         v-for="color in props.colors"
-        :key="color"
+        :key="color.label"
         cols="11"
         md="6">
 
         <v-text-field
           v-model="form"
           :color="color.value"
-          :variant="variant"
+          :variant="(variant as any)"
           :disabled="disabled"
           :loading="loading"
           :rules="[(value: string) => !!value.length || 'This field is required']"

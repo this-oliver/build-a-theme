@@ -38,12 +38,12 @@ const actions = computed<ContentAction[]>(() => {
     <v-row>
       <v-col
         v-for="color in props.colors"
-        :key="color"
+        :key="color.label"
         md="3">
         <v-btn
           class="button"
           :color="color.value"
-          :variant="variant"
+          :variant="(variant as any)"
           :disabled="disabled"
           :loading="loading">
           Btn

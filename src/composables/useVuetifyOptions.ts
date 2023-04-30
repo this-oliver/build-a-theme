@@ -27,7 +27,7 @@ export function useVuetifyOptions(componentType: Type = 'output') {
   });
 
   const variant = computed<Variant | VariantTextInput | undefined>(() => {
-    let variant: Variant | undefined = undefined;
+    let variant: Variant | VariantTextInput | undefined = undefined;
 
     Object.keys(optionsForm.value).forEach((key) => {
       if(optionsForm.value[key].value){

@@ -55,7 +55,7 @@ watch(darkMode, (value) => {
     <v-row>
       <v-col
         v-for="color in colors"
-        :key="color"
+        :key="color.label"
         :cols="6">
         <theme-form :color="color"/>
       </v-col>
