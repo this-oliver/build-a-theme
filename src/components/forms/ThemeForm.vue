@@ -3,7 +3,7 @@ import BaseBtn from '@/components/base/BaseBtn.vue';
 import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const themeStore = useThemeStore();
 
@@ -35,6 +35,16 @@ function deactivate(){
   hex.value = props.color.value;
 }
 
+const textColor = computed(() => {
+  const specialCase = [ 'on-background', 'on-surface' ]
+  if(specialCase.includes(props.color.label)){
+    
+    return themeStore.dark ? 'black' : 'white';
+  }
+
+  return props.color.value;
+});
+
 watch(() => props.color.value, (value) => {
   hex.value = value;
 })
@@ -46,6 +56,7 @@ watch(() => props.color.value, (value) => {
     <div>
       <base-btn
         block
+        :class="`text-${textColor}`"
         :color="props.color.value"
         :disabled="props.readOnly"
         @click="toggleActivate">

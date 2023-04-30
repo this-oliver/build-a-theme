@@ -28,13 +28,13 @@ const themeStore = useThemeStore();
         md="7">
         <demo-buttons
           id="demo-item-button"
-          :colors="themeStore.colors" />
+          :colors="themeStore.mainColors" />
         <demo-cards
           id="demo-item-card"
-          :colors="themeStore.colors"/>
+          :colors="themeStore.mainColors"/>
         <demo-input-text
           id="demo-item-input-text"
-          :colors="themeStore.colors"/>
+          :colors="themeStore.mainColors"/>
       </v-col>
     </v-row>
   </base-page>

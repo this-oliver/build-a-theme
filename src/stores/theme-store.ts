@@ -15,15 +15,16 @@ export interface Color {
   value: string
 }
 
-const approvedMainColors = [ 'primary', 'secondary', 'info', 'success', 'warning', 'error' ];
-const approvedStandardColors = [ ...approvedMainColors, 'background', 'surface' ]
+const mainColorSet = [ 'primary', 'secondary', 'info', 'success', 'warning', 'error' ];
+const brandColorSet = [ ...mainColorSet, 'background', 'surface' ]
+const applicationColorSet = [ ...brandColorSet, 'on-background', 'on-surface' ];
 
 const useThemeStore = defineStore( 'theme', () => {
   const vTheme = useTheme();
 
   const dark = computed<boolean>(() => vTheme.global.name.value === 'dark')
 
-  const allColors = computed<Color[]>(() => {
+  const colors = computed<Color[]>(() => {
     const colors = vTheme.global.current.value.colors;
     
     return Object
@@ -36,20 +37,27 @@ const useThemeStore = defineStore( 'theme', () => {
       })
   })
 
-  const standardColors = computed<Color[]>(() => {
-    return allColors.value
+  const brandColors = computed<Color[]>(() => {
+    return colors.value
       .filter(color => {
-        return approvedStandardColors.includes(color.label);
+        return brandColorSet.includes(color.label);
       });
   })
 
-  const colors = computed<Color[]>(() => {
-    const color = allColors.value
+  const mainColors = computed<Color[]>(() => {
+    const mainColors = colors.value
       .filter(color => {
-        return approvedMainColors.includes(color.label);
+        return mainColorSet.includes(color.label);
       });
 
-    return [ { label: 'baseline', value: '' }, ...color ];
+    return [ { label: 'baseline', value: '' }, ...mainColors ];
+  })
+
+  const applicationColors = computed<Color[]>(() => {
+    return colors.value
+      .filter(color => {
+        return applicationColorSet.includes(color.label);
+      });
   })
   
   function setColor(color: string, value: string): void {
@@ -89,8 +97,9 @@ const useThemeStore = defineStore( 'theme', () => {
   return {
     dark,
     colors,
-    standardColors,
-    allColors,
+    mainColors,
+    brandColors,
+    applicationColors,
     setColor,
     setDarkMode,
     randomTheme

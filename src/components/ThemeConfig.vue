@@ -3,7 +3,7 @@ import BaseBtn from '@/components/base/BaseBtn.vue';
 import ContentCard from '@/components/cards/ContentCard.vue';
 import ThemeForm from '@/components/forms/ThemeForm.vue';
 import { useThemeStore } from '@/stores/theme-store';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 const props = defineProps({
   readOnly: {
@@ -14,7 +14,10 @@ const props = defineProps({
 
 const themeStore = useThemeStore();
 
+const allColors = ref<boolean>(false);
 const darkMode = ref<boolean>(themeStore.dark);
+
+const colors = computed(() => allColors.value ? themeStore.applicationColors : themeStore.brandColors);
 
 watch(darkMode, (value) => {
   themeStore.setDarkMode(value);
@@ -26,32 +29,42 @@ watch(darkMode, (value) => {
   <content-card title="Config">
     <template #options>
       <base-btn
-        :outlined="darkMode"
-        size="small"
         class="mr-1 mt-1"
+        size="small"
+        :outlined="darkMode"
         :disabled="props.readOnly"
         @click="darkMode = !darkMode">
         <p>
-          Toggle {{ darkMode ? 'light mode' : 'dark mode' }}
+          {{ darkMode ? 'light mode' : 'dark mode' }}
           <v-icon :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"/>
         </p>
       </base-btn>
 
       <base-btn
-        size="small"
         class="mr-1 mt-1"
+        size="small"
+        :outlined="allColors"
+        :disabled="props.readOnly"
+        @click="allColors = !allColors">
+        All Colors
+        <v-icon icon="mdi-palette-swatch-outline"/>
+      </base-btn>
+
+      <base-btn
+        class="mr-1 mt-1"
+        size="small"
         :disabled="props.readOnly"
         @click="themeStore.randomTheme">
-        Random theme
+        Random
         <v-icon icon="mdi-dice-5-outline"/>
       </base-btn>
     </template>
     
     <v-row>
       <v-col
-        v-for="color in themeStore.standardColors"
+        v-for="color in colors"
         :key="color.label"
-        :cols="6">
+        :cols="allColors ? 11 : 6">
         <theme-form :color="color"/>
       </v-col>
     </v-row>

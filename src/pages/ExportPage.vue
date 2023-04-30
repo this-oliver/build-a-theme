@@ -25,7 +25,7 @@ const themeStore = useThemeStore();
 
           </template>
           <config-card
-            :colors="themeStore.colors"
+            :colors="themeStore.applicationColors"
             :dark="themeStore.dark" />
         </content-card>
       </v-col>
