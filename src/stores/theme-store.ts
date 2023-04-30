@@ -15,14 +15,17 @@ export interface Color {
   value: string
 }
 
+const approvedMainColors = [ 'primary', 'secondary', 'info', 'success', 'warning', 'error' ];
+const approvedStandardColors = [ ...approvedMainColors, 'background', 'surface' ]
+
 const useThemeStore = defineStore( 'theme', () => {
-  const vTheme = useTheme()
+  const vTheme = useTheme();
 
   const dark = computed<boolean>(() => vTheme.global.name.value === 'dark')
 
   const allColors = computed<Color[]>(() => {
     return Object
-      .keys(vTheme.current.value.colors)
+      .keys(vTheme.global.current.value.colors)
       .map(key => {
         return {
           label: key,
@@ -32,18 +35,16 @@ const useThemeStore = defineStore( 'theme', () => {
   })
 
   const standardColors = computed<Color[]>(() => {
-    // filter out all colors that start with 'on' (case insensitive)
     return allColors.value
       .filter(color => {
-        return !color.label.match(/^on/i) && !color.label.includes('-')
+        return approvedStandardColors.includes(color.label);
       });
   })
 
   const colors = computed<Color[]>(() => {
-    // filter out background and surface colors
-    const color = standardColors.value
+    const color = allColors.value
       .filter(color => {
-        return color.label !== 'background' && color.label !== 'surface'
+        return approvedMainColors.includes(color.label);
       });
 
     return [ { label: 'baseline', value: '' }, ...color ];
