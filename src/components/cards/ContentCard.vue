@@ -41,7 +41,7 @@ const getConfigColor = computed<string>(() => {
   <div>
     <v-divider class="border-opacity-50"></v-divider>
     <v-sheet
-      class="mt-2 pa-1"
+      class="mt-2 pa-2"
       rounded="lg"
       :color="getConfigColor">
       <slot
