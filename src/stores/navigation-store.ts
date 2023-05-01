@@ -7,12 +7,7 @@ export const useNavigationStore = defineStore('navigation', () => {
   const options = computed<ActionItem[]>(() => {
     return [
       {
-        label: 'Getting Started',
-        icon: 'mdi-lightbulb-outline',
-        to: '/start'
-      },
-      {
-        label: 'Configure',
+        label: 'Build',
         icon: 'mdi-palette',
         to: '/config'
       },
@@ -20,6 +15,11 @@ export const useNavigationStore = defineStore('navigation', () => {
         label: 'Export',
         icon: 'mdi-export-variant',
         to: '/export'
+      },
+      {
+        label: 'Help',
+        icon: 'mdi-help-circle',
+        to: '/help'
       }
     ]
   })

@@ -10,11 +10,6 @@ const router = createRouter({
       component: LandingPage
     },
     {
-      path: '/start',
-      name: 'start',
-      component: () => import('@/pages/StartPage.vue')
-    },
-    {
       path: '/config',
       name: 'config',
       component: () => import('@/pages/ConfigPage.vue')
@@ -23,6 +18,11 @@ const router = createRouter({
       path: '/export',
       name: 'export',
       component: () => import('@/pages/ExportPage.vue')
+    },
+    {
+      path: '/help',
+      name: 'help',
+      component: () => import('@/pages/HelpPage.vue')
     },
     {
       path: '/:pathMatch(.*)*',

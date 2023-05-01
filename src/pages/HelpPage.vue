@@ -34,7 +34,7 @@ const generalTips: Tip[] = [
   <base-page title="Getting Started">
     <v-row justify="center">
       <v-col
-        md="10"
+        md="7"
         class="mt-2">
         <content-card-vue
           title="Usage"
@@ -66,7 +66,7 @@ const generalTips: Tip[] = [
       </v-col>
 
       <v-col
-        md="10"
+        md="7"
         class="mt-2">
         <content-card-vue
           title="Tips"

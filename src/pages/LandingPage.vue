@@ -1,20 +1,25 @@
 <script setup lang="ts">
-import IconMaterial from '@/assets/icon-material.svg';
-import IconVuetify from '@/assets/icon-vuetify.svg';
 import BaseBtn from '@/components/base/BaseBtn.vue';
-import BaseImage from '@/components/base/BaseImage.vue';
 import BasePage from '@/components/base/BasePage.vue';
+import { useThemeStore } from '@/stores/theme-store';
+import { computed } from 'vue';
 
-interface Icons {
-  src: string;
-  label: string;
-}
+const themeStore = useThemeStore();
 
-const icons: Icons[] = [
-  { src: IconVuetify, label: 'Vuetify' },
-  { src: IconMaterial, label: 'Material Design' }
-];
+const code = computed<string>(() => {
+  const theme = {
+    dark: themeStore.dark,
+    colors: {}
+  }
 
+  const colors = themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.mainColors;
+
+  colors.forEach((color) => {
+    (theme.colors as any)[color.label] = color.value as string;
+  });
+
+  return JSON.stringify(theme, null, 2);
+});
 
 </script>
 
@@ -26,48 +31,28 @@ const icons: Icons[] = [
       <v-col
         id="landing-header-pitch"
         class="text-center"
-        md="7">
+        md="6">
         <h1>Build-A-Theme</h1>
           
         <h2 class="mt-2">
-          A theme builder for Vuetify & Material UI projects that allows you to
-          build a theme with real-time preview. Once you are happy 
-          with your theme, you can export the ThemeConfig object to
-          use in your project.
+          Build and export a theme for your Material Design based
+          frontend project in real-time.
         </h2>
       </v-col>
 
       <v-divider class="border-opacity-0"></v-divider>
 
       <v-col
-        cols="auto"
-        md="6">
+        cols="7"
+        md="4">
         <base-btn
           class="mt-2"
           block
           large
           color="primary"
-          to="/start">
+          to="/config">
           Get Started
         </base-btn>
-      </v-col>
-    </v-row>
-
-    <v-row
-      class="mt-2"
-      style="padding-top: 2rem;"
-      justify="center">
-      <v-col
-        v-for="icon in icons"
-        :key="icon.label"
-        class="text-center"
-        cols="auto"
-        md="2">
-        <base-image
-          class="mx-1"
-          :src="icon.src"
-          :alt="icon.label"
-          height="45px"/>
       </v-col>
     </v-row>
   </base-page>
@@ -75,7 +60,7 @@ const icons: Icons[] = [
 
 <style scoped>
 #landing-header {
-  padding-top: 5vh;
+  padding-top: 15vh;
 }
 
 #landing-header h2 {
@@ -84,7 +69,7 @@ const icons: Icons[] = [
 
 @media (min-width: 600px) {
   #landing-header {
-    padding-top: 5vh;
+    padding-top: 15vh;
   }
   
   #landing-header h1 {
