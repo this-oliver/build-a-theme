@@ -6,8 +6,8 @@ import type { Color } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed } from 'vue';
 
-const DemoTitle = 'Cards';
-const DemoDescription = 'Cards are used to display content related to a single subject. Try toggling the options below to see how they affect the cards.';
+const ContentTitle = 'Cards';
+const ContentDescription = 'Cards are used to display content related to a single subject. Try toggling the options below to see how they affect the cards.';
 
 const props = defineProps({
   colors: {
@@ -31,8 +31,8 @@ const actions = computed<ContentAction[]>(() => {
 
 <template>
   <content-card
-    :title="DemoTitle"
-    :description="DemoDescription"
+    :title="ContentTitle"
+    :description="ContentDescription"
     :actions="actions">
 
     <v-row

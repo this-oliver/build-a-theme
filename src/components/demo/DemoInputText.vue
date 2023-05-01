@@ -6,8 +6,8 @@ import type { Color } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed, ref } from 'vue';
 
-const DemoTitle = 'Input Text';
-const DemoDescription = 'Text fields are used to collect text-based user input. Try toggling the options below to see how they affect the cards.';
+const ContentTitle = 'Input Text';
+const ContentDescription = 'Text fields are used to collect text-based user input. Try toggling the options below to see how they affect the cards.';
 
 const props = defineProps({
   colors: {
@@ -33,8 +33,8 @@ const actions = computed<ContentAction[]>(() => {
 
 <template>
   <content-card
-    :title="DemoTitle"
-    :description="DemoDescription"
+    :title="ContentTitle"
+    :description="ContentDescription"
     :actions="actions">
 
     <v-row

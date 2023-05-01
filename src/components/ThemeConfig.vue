@@ -5,6 +5,9 @@ import ThemeForm from '@/components/forms/ThemeForm.vue';
 import { useThemeStore } from '@/stores/theme-store';
 import { computed, ref, watch } from 'vue';
 
+const ContentTitle = 'Theme Config';
+const ContentDescription = 'Play around with the colors below to see how they affect the components on the page and the application as a whole.';
+
 const props = defineProps({
   readOnly: {
     type: Boolean,
@@ -25,12 +28,15 @@ watch(darkMode, (value) => {
 </script>
 
 <template>
-  <content-card title="Config">
+  <content-card
+    :title="ContentTitle"
+    :description="ContentDescription">
     <template #options>
       <base-btn
         class="mr-1 mt-1"
         size="small"
         :outlined="darkMode"
+        :tonal="!darkMode"
         :disabled="props.readOnly"
         @click="darkMode = !darkMode">
         <p>
@@ -43,6 +49,7 @@ watch(darkMode, (value) => {
         class="mr-1 mt-1"
         size="small"
         :outlined="themeStore.colorSet === 'application'"
+        :tonal="themeStore.colorSet !== 'application'"
         :disabled="props.readOnly"
         @click="themeStore.toggleColorSet">
         All Colors
@@ -51,6 +58,7 @@ watch(darkMode, (value) => {
 
       <base-btn
         class="mr-1 mt-1"
+        tonal
         size="small"
         :disabled="props.readOnly"
         @click="themeStore.generateRandomTheme">
