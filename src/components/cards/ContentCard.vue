@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import type { Option } from '@/composables/useVuetifyOptions';
+import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
+import { computed } from 'vue';
 
 export interface ContentAction {
   option: Option;
   toggle: () => void;
 }
+
+const themeStore = useThemeStore();
 
 const props = defineProps({
   title: {
@@ -23,6 +27,10 @@ const props = defineProps({
   }
 });
 
+const getConfigColor = computed<string>(() => {
+  return themeStore.dark ? 'grey-darken-3' : 'grey-lighten-4';
+});
+
 </script>
 
 <template>
@@ -30,7 +38,8 @@ const props = defineProps({
     <v-divider class="border-opacity-50"></v-divider>
     <v-sheet
       class="mt-2 pa-1"
-      rounded="lg">
+      rounded="lg"
+      :color="getConfigColor">
       <v-col class="mt-2 mt-md-0">
         <slot name="title">
           <h2>{{ props.title }}</h2>
@@ -57,7 +66,7 @@ const props = defineProps({
 
       <v-divider class="border-opacity-0"></v-divider>
 
-      <v-col class="mt-2">
+      <v-col>
         <slot name="options">
           <base-btn
             v-for="action in actions"
