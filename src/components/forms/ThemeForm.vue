@@ -98,9 +98,3 @@ watch(() => props.color.value, (value) => {
     </v-navigation-drawer>
   </div>
 </template>
-
-<style>
-.clickable {
-  cursor: pointer;
-}
-</style>
