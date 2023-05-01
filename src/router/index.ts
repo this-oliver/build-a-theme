@@ -20,11 +20,6 @@ const router = createRouter({
       component: () => import('@/pages/ConfigPage.vue')
     },
     {
-      path: '/preview',
-      name: 'preview',
-      component: () => import('@/pages/PreviewPage.vue')
-    },
-    {
       path: '/export',
       name: 'export',
       component: () => import('@/pages/ExportPage.vue')

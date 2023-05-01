@@ -17,11 +17,6 @@ export const useNavigationStore = defineStore('navigation', () => {
         to: '/config'
       },
       {
-        label: 'Preview',
-        icon: 'mdi-eye-outline',
-        to: '/preview'
-      },
-      {
         label: 'Export',
         icon: 'mdi-export-variant',
         to: '/export'
