@@ -17,6 +17,7 @@ const colors = computed(() => {
 <template>
   <base-page title="Export Theme">
     <v-row
+      id="export"
       justify="center"
       justify-md="space-between">
       
@@ -41,3 +42,19 @@ const colors = computed(() => {
     </v-row>
   </base-page>
 </template>
+
+<style>
+@media (min-width: 600px) {
+  #export > * {
+    padding-bottom: 50px;
+    
+    /* fix height and force scroll vertically */
+    max-height: 75vh;
+    overflow-y: scroll;
+
+    /* hide scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+</style>

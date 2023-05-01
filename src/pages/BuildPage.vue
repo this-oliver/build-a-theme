@@ -13,27 +13,27 @@ const themeStore = useThemeStore();
 <template>
   <base-page title="Build Theme">
     <v-row
-      id="demo"
+      id="build"
       justify="center"
       justify-md="space-between">
       
       <v-col
-        id="demo-theme"
+        id="build-theme"
         md="4">
         <theme-config />
       </v-col>
 
       <v-col
-        id="demo-items"
+        id="build-items"
         md="7">
         <demo-buttons
-          id="demo-item-button"
+          id="build-item-button"
           :colors="themeStore.mainColors" />
         <demo-cards
-          id="demo-item-card"
+          id="build-item-card"
           :colors="themeStore.mainColors"/>
         <demo-input-text
-          id="demo-item-input-text"
+          id="build-item-input-text"
           :colors="themeStore.mainColors"/>
       </v-col>
     </v-row>
@@ -42,7 +42,7 @@ const themeStore = useThemeStore();
 
 <style>
 @media (min-width: 600px) {
-  #demo > * {
+  #build > * {
     padding-bottom: 50px;
     
     /* fix height and force scroll vertically */
@@ -54,7 +54,7 @@ const themeStore = useThemeStore();
     scrollbar-width: none;  /* Firefox */
   }
 
-  #demo-item-card, #demo-item-input-text {
+  #build-item-card, #build-item-input-text {
     padding-top: 5vh;
   }
 }
