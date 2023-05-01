@@ -5,8 +5,6 @@ import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed, ref, watch } from 'vue';
 
-const specialCases = [ 'on-background', 'on-surface' ]; // These colors that are used for text should be black or white depending on the theme
-
 const themeStore = useThemeStore();
 
 const props = defineProps({
@@ -20,8 +18,26 @@ const props = defineProps({
   }
 });
 
-const hex = ref<string>(props.color.value);
 const active = ref<boolean>(false);
+const hex = ref<string>(props.color.value);
+
+/**
+ * `on-background` and `on-surface` are special cases that
+ * should be black or white depending on the theme for
+ * readability.
+ */
+const getColor = computed<string>(() => {
+  switch (props.color.label) {
+  case 'on-background':
+    return themeStore.getColor('background')?.value || props.color.value;
+    
+  case 'on-surface':
+    return themeStore.getColor('surface')?.value || props.color.value;
+  
+  default:
+    return props.color.value;
+  }
+});
 
 function setColor(){
   themeStore.setColor(props.color.label, hex.value);
@@ -37,57 +53,57 @@ function deactivate(){
   hex.value = props.color.value;
 }
 
-const btnColor = computed<string>(() => {
-  let color = props.color.value;
-
-  if(specialCases.includes(props.color.label)){
-    if(props.color.label === 'on-background'){
-      // return background color
-      color = themeStore.getColor('background')?.value || color;
-    } else {
-      // return surface color
-      color = themeStore.getColor('surface')?.value || color;
-    }
-  }
-
-  return color;
-});
-
-const textColor = computed<string>(() => {
-  let color: string | undefined = undefined;
-
-  if(specialCases.includes(props.color.label)){
-    if(props.color.label === 'on-background'){
-      // return background color
-      color = themeStore.getColor('on-background')?.label;
-    } else {
-      // return surface color
-      color = themeStore.getColor('on-surface')?.label;
-    }
-  }
-
-  return color ? `text-${color}` : '';
-});
-
 watch(() => props.color.value, (value) => {
   hex.value = value;
 })
-
 </script>
 
 <template>
   <div>
-    <div>
-      <base-btn
-        block
-        :class="`${textColor}`"
-        :color="btnColor"
-        :disabled="props.readOnly"
-        @click="toggleActivate">
-        {{ props.color.label }}
-      </base-btn>
-      <small>{{ props.color.value }}</small>
-    </div>
+    <v-card
+      class="`mt-2 pa-2`"
+      rounded="lg"
+      elevation="0"
+      density="compact"
+      :color="getColor">
+      <v-row
+        no-gutters
+        justify="space-between"
+        align="center">
+        <v-col>
+          <v-card-title>{{ color.label }}</v-card-title>
+        </v-col>
+
+        <v-col
+          class="text-end"
+          cols="auto">
+          <v-card-subtitle>
+            <v-sheet class="pa-1">
+              {{ color.value }}
+              <v-icon
+                :color="color.value"
+                icon="mdi-circle"></v-icon>
+            </v-sheet>
+          </v-card-subtitle>
+        </v-col>
+        
+        <v-col cols="12">
+          <v-card-text>{{ color.description }}</v-card-text>
+        </v-col>
+      </v-row>
+
+      <v-card-actions>
+        <base-btn
+          block
+          class="mr-1"
+          size="small"
+          :disabled="props.readOnly"
+          @click="toggleActivate">
+          Modify
+          <v-icon icon="mdi-pencil"></v-icon>
+        </base-btn>
+      </v-card-actions>
+    </v-card>
   
     <v-navigation-drawer
       :model-value="active"

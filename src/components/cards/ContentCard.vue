@@ -21,6 +21,10 @@ const props = defineProps({
     type: String,
     default: undefined
   },
+  configMode: {
+    type: Boolean,
+    default: false
+  },
   actions: {
     type: Array as PropType<ContentAction[]>,
     default: () => []
@@ -42,7 +46,14 @@ const getConfigColor = computed<string>(() => {
       :color="getConfigColor">
       <v-col class="mt-2 mt-md-0">
         <slot name="title">
-          <h2>{{ props.title }}</h2>
+          <v-row justify="space-between">
+            <v-col>
+              <h2>{{ props.title }}</h2>
+            </v-col>
+            <v-col cols="auto">
+              <v-icon :icon="props.configMode ? 'mdi-brush-variant' : 'mdi-palette-swatch-outline'"></v-icon>
+            </v-col>
+          </v-row>
         </slot>
       </v-col>
     
@@ -50,17 +61,7 @@ const getConfigColor = computed<string>(() => {
     
       <v-col>
         <slot name="description">
-          <v-row v-if="props.description">
-            <v-col cols="auto">
-              <v-icon
-                icon="mdi-information-outline"
-                size="small"></v-icon>
-            </v-col>
-            
-            <v-col>
-              <p>{{ props.description }}</p>
-            </v-col>
-          </v-row>
+          <p v-if="props.description">{{ props.description }}</p>
         </slot>
       </v-col>
 

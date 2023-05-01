@@ -22,14 +22,9 @@ const colors = computed(() => {
       justify-md="space-between">
       
       <v-col md="7">
-        <content-card title="Theme">
-          <template #options>
-            <p>
-              The snippet below is the config object that is used to generate the theme in this demo. You can
-              copy and paste it into your project to apply the same theme.
-            </p>
-
-          </template>
+        <content-card
+          title="Theme"
+          description="The snippet below is the config object that is used to generate the theme in this demo. You can copy and paste it into your project to apply the same theme.">
           <config-card
             :colors="colors"
             :dark="themeStore.dark" />

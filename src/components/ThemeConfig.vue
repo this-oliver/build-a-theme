@@ -19,7 +19,7 @@ const themeStore = useThemeStore();
 
 const darkMode = ref<boolean>(themeStore.dark);
 
-const colors = computed(() => themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.brandColors);
+const getColors = computed(() => themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.brandColors);
 
 watch(darkMode, (value) => {
   themeStore.setDarkMode(value);
@@ -30,30 +30,29 @@ watch(darkMode, (value) => {
 <template>
   <content-card
     :title="ContentTitle"
-    :description="ContentDescription">
+    :description="ContentDescription"
+    config-mode>
     <template #options>
       <base-btn
         class="mr-1 mt-1"
-        size="small"
-        :outlined="darkMode"
-        :tonal="!darkMode"
-        :disabled="props.readOnly"
-        @click="darkMode = !darkMode">
-        <p>
-          {{ darkMode ? 'light mode' : 'dark mode' }}
-          <v-icon :icon="darkMode ? 'mdi-white-balance-sunny' : 'mdi-weather-night'"/>
-        </p>
-      </base-btn>
-
-      <base-btn
-        class="mr-1 mt-1"
+        :style="`font-weight: ${themeStore.colorSet === 'application' ? 'bold' : 'normal'};`"
         size="small"
         :outlined="themeStore.colorSet === 'application'"
         :tonal="themeStore.colorSet !== 'application'"
         :disabled="props.readOnly"
         @click="themeStore.toggleColorSet">
         All Colors
-        <v-icon icon="mdi-palette-swatch-outline"/>
+      </base-btn>
+      
+      <base-btn
+        class="mr-1 mt-1"
+        :style="`font-weight: ${darkMode ? 'bold' : 'normal'};`"
+        size="small"
+        :outlined="darkMode"
+        :tonal="!darkMode"
+        :disabled="props.readOnly"
+        @click="darkMode = !darkMode">
+        {{ darkMode ? 'Light' : 'Dark' }} Mode
       </base-btn>
 
       <base-btn
@@ -62,17 +61,15 @@ watch(darkMode, (value) => {
         size="small"
         :disabled="props.readOnly"
         @click="themeStore.generateRandomTheme">
-        Random
-        <v-icon icon="mdi-dice-5-outline"/>
+        Random Theme
       </base-btn>
     </template>
     
     <v-row justify="center">
       <v-col
-        v-for="color in colors"
+        v-for="color in getColors"
         :key="color.label"
-        cols="11"
-        :md="themeStore.colorSet === 'application' ? 11 : 6">
+        cols="12">
         <theme-form :color="color"/>
       </v-col>
     </v-row>

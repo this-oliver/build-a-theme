@@ -41,6 +41,10 @@ const themeStore = useThemeStore();
 </template>
 
 <style>
+#build-items > * {
+  padding-top: 5vh;
+}
+
 @media (min-width: 600px) {
   #build > * {
     padding-bottom: 50px;
@@ -52,6 +56,10 @@ const themeStore = useThemeStore();
     /* hide scrollbar */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+
+  #build-item-button {
+    padding-top: 0;
   }
 
   #build-item-card, #build-item-input-text {

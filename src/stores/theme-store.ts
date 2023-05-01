@@ -20,14 +20,82 @@ import { useTheme } from 'vuetify';
  */
 type ColorSet = 'brand' | 'application';
 
+/**
+ * Color
+ * 
+ * @description Color is used to represent a color in the theme.
+ * 
+ * @property {string} label - The name of the color.
+ * @property {string} description - The description of the color.
+ * @property {string} value - The value of the color in hex format.
+ */
 export interface Color {
   label: string;
-  value: string
+  description: string;
+  value: string;
 }
 
-const mainColorSet = [ 'primary', 'secondary', 'info', 'success', 'warning', 'error' ];
-const brandColorSet = [ ...mainColorSet, 'background', 'surface' ]
-const applicationColorSet = [ ...brandColorSet, 'on-background', 'on-surface' ];
+
+const mainColorSet: Color[] = [ 
+  {
+    label: 'primary',
+    description: 'Represents the main identity color used for emphasis and branding.',
+    value: ''
+  },
+  {
+    label: 'secondary',
+    description: 'Complements the primary color and provides contrast for branding.',
+    value: ''
+  },
+  {
+    label: 'info',
+    description: 'Used for displaying informational messages in visual design elements like buttons, cards and notifications.',
+    value: ''
+  },
+  {
+    label: 'success',
+    description: 'Indicates successful actions or outcomes in visual design elements like buttons, cards and notifications.',
+    value: ''
+  },
+  {
+    label: 'warning',
+    description: 'Highlights warnings or potential issues in visual design elements like buttons, cards and notifications.',
+    value: ''
+  },
+  {
+    label: 'error',
+    description: 'Signals errors or problems in visual design elements like buttons, cards and notifications.',
+    value: ''
+  }
+];
+
+const brandColorSet: Color[] = [
+  ...mainColorSet,
+  {
+    label: 'background',
+    description: 'Sets the overall canvas color for the application.',
+    value: ''
+  },
+  {
+    label: 'surface',
+    description: 'Defines the color for components placed over the background.',
+    value: ''
+  }
+];
+
+const applicationColorSet: Color[] = [
+  ...brandColorSet,
+  {
+    label: 'on-background',
+    description: 'Determines the text and icon color displayed on the background.',
+    value: ''
+  },
+  {
+    label: 'on-surface',
+    description: 'Determines the text and icon color displayed on the surface.',
+    value: ''
+  }
+];
 
 const useThemeStore = defineStore( 'theme', () => {
   const vTheme = useTheme();
@@ -44,6 +112,7 @@ const useThemeStore = defineStore( 'theme', () => {
       .map(key => {
         return {
           label: key,
+          description: '',
           value: colors[key] || ''
         }
       })
@@ -52,23 +121,42 @@ const useThemeStore = defineStore( 'theme', () => {
   const brandColors = computed<Color[]>(() => {
     return colors.value
       .filter(color => {
-        return brandColorSet.includes(color.label);
+        return brandColorSet.find(colorSet => colorSet.label === color.label) !== undefined;
+      })
+      .map(color => {
+        const brandColor = brandColorSet.find(colorSet => colorSet.label === color.label);
+        return brandColor ? { ...color, description: brandColor.description } : color;
       });
   })
 
   const mainColors = computed<Color[]>(() => {
     const mainColors = colors.value
       .filter(color => {
-        return mainColorSet.includes(color.label);
+        return mainColorSet.find(colorSet => colorSet.label === color.label) !== undefined;
+      })
+      .map(color => {
+        const mainColor = mainColorSet.find(colorSet => colorSet.label === color.label);
+        return mainColor ? { ...color, description: mainColor.description } : color;
       });
 
-    return [ { label: 'baseline', value: '' }, ...mainColors ];
+    return [ 
+      { 
+        label: 'baseline',
+        value: '',
+        description: 'Serves as the default color for elements when no specific color is assigned.'
+      },
+      ...mainColors
+    ];
   })
 
   const applicationColors = computed<Color[]>(() => {
     return colors.value
       .filter(color => {
-        return applicationColorSet.includes(color.label);
+        return applicationColorSet.find(colorSet => colorSet.label === color.label) !== undefined;
+      })
+      .map(color => {
+        const applicationColor = applicationColorSet.find(colorSet => colorSet.label === color.label);
+        return applicationColor ? { ...color, description: applicationColor.description } : color;
       });
   })
   
