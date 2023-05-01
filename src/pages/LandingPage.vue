@@ -1,25 +1,6 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
 import BasePage from '@/components/base/BasePage.vue';
-import { useThemeStore } from '@/stores/theme-store';
-import { computed } from 'vue';
-
-const themeStore = useThemeStore();
-
-const code = computed<string>(() => {
-  const theme = {
-    dark: themeStore.dark,
-    colors: {}
-  }
-
-  const colors = themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.mainColors;
-
-  colors.forEach((color) => {
-    (theme.colors as any)[color.label] = color.value as string;
-  });
-
-  return JSON.stringify(theme, null, 2);
-});
 
 </script>
 
