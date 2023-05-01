@@ -21,9 +21,9 @@ const props = defineProps({
     type: String,
     default: undefined
   },
-  configMode: {
-    type: Boolean,
-    default: false
+  icon: {
+    type: String,
+    default: 'mdi-information-outline'
   },
   actions: {
     type: Array as PropType<ContentAction[]>,
@@ -51,7 +51,7 @@ const getConfigColor = computed<string>(() => {
               <h2>{{ props.title }}</h2>
             </v-col>
             <v-col cols="auto">
-              <v-icon :icon="props.configMode ? 'mdi-brush-variant' : 'mdi-palette-swatch-outline'"></v-icon>
+              <v-icon :icon="props.icon"></v-icon>
             </v-col>
           </v-row>
         </slot>

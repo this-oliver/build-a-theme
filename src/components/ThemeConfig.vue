@@ -31,6 +31,7 @@ watch(darkMode, (value) => {
   <content-card
     :title="ContentTitle"
     :description="ContentDescription"
+    icon="mdi-brush-variant"
     config-mode>
     <template #options>
       <base-btn

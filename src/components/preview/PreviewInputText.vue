@@ -35,6 +35,7 @@ const actions = computed<ContentAction[]>(() => {
   <content-card
     :title="ContentTitle"
     :description="ContentDescription"
+    icon="mdi-palette-swatch-outline"
     :actions="actions">
 
     <v-row
