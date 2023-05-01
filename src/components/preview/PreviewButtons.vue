@@ -39,6 +39,7 @@ const actions = computed<ContentAction[]>(() => {
       <v-col
         v-for="color in props.colors"
         :key="color.label"
+        cols="6"
         md="3">
         <v-btn
           class="button"
