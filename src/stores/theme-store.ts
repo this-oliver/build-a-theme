@@ -35,7 +35,6 @@ export interface Color {
   value: string;
 }
 
-
 const mainColorSet: Color[] = [ 
   {
     label: 'primary',
@@ -190,6 +189,28 @@ const useThemeStore = defineStore( 'theme', () => {
     setColor('surface', `#${_getRandomHex()}`);
   }
 
+  function resetTheme(): void {
+    // get theme 'default'
+    const defaultTheme = _getTheme('default');
+
+    // get current theme
+    const currentTheme = _getTheme();
+    const currentThemeName = _getCurrentThemeName();
+
+    // reset colors
+    currentTheme.dark = defaultTheme.dark;
+
+    Object.keys(defaultTheme.colors!).forEach(key => {
+      currentTheme.colors![key] = defaultTheme.colors![key];
+    });
+
+    // override theme
+    vTheme.themes.value[currentThemeName] = currentTheme as any; // can't assign to InternalThemeDefinition
+
+    // force update
+    vTheme.global.name.value = currentThemeName;
+  }
+
   function _getCurrentThemeName(): string {
     return vTheme.global.name.value;
   }
@@ -213,7 +234,8 @@ const useThemeStore = defineStore( 'theme', () => {
     getColor,
     setDarkMode,
     toggleColorSet,
-    generateRandomTheme
+    generateRandomTheme,
+    resetTheme
   }
 });
 

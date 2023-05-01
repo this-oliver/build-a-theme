@@ -64,6 +64,15 @@ watch(darkMode, (value) => {
         @click="themeStore.generateRandomTheme">
         Random Theme
       </base-btn>
+
+      <base-btn
+        class="mr-1 mt-1"
+        tonal
+        size="small"
+        :disabled="props.readOnly"
+        @click="themeStore.resetTheme">
+        Reset Theme
+      </base-btn>
     </template>
     
     <v-row justify="center">
