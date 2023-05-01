@@ -42,17 +42,13 @@ const themeStore = useThemeStore();
 
 <style>
 @media (min-width: 600px) {
-  #demo-theme {
-    overflow-y: hidden;
-  }
-  
-  #demo-items {
+  #demo > * {
     padding-bottom: 50px;
-
+    
     /* fix height and force scroll vertically */
     max-height: 75vh;
     overflow-y: scroll;
-  
+
     /* hide scrollbar */
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
