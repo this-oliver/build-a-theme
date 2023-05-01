@@ -53,7 +53,7 @@ watch(darkMode, (value) => {
         class="mr-1 mt-1"
         size="small"
         :disabled="props.readOnly"
-        @click="themeStore.randomTheme">
+        @click="themeStore.generateRandomTheme">
         Random
         <v-icon icon="mdi-dice-5-outline"/>
       </base-btn>

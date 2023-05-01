@@ -43,10 +43,10 @@ const btnColor = computed<string>(() => {
   if(specialCases.includes(props.color.label)){
     if(props.color.label === 'on-background'){
       // return background color
-      color = themeStore.colors.find((color) => color.label === 'background')!.value;
+      color = themeStore.getColor('background')?.value || color;
     } else {
       // return surface color
-      color = themeStore.colors.find((color) => color.label === 'surface')!.value;
+      color = themeStore.getColor('surface')?.value || color;
     }
   }
 
@@ -59,10 +59,10 @@ const textColor = computed<string>(() => {
   if(specialCases.includes(props.color.label)){
     if(props.color.label === 'on-background'){
       // return background color
-      color = themeStore.colors.find((color) => color.label === 'on-background')!.label;
+      color = themeStore.getColor('on-background')?.label;
     } else {
       // return surface color
-      color = themeStore.colors.find((color) => color.label === 'on-surface')!.label;
+      color = themeStore.getColor('on-surface')?.label;
     }
   }
 

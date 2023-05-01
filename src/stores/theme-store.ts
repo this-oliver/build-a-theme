@@ -85,17 +85,21 @@ const useThemeStore = defineStore( 'theme', () => {
     vTheme.global.name.value = themeName;
   }
 
+  function getColor(label: string): Color | undefined {
+    return colors.value.find(color => color.label === label);
+  }
+
   function setDarkMode(dark: boolean): void {
     vTheme.global.name.value = dark ? 'dark' : 'light';
   }
 
-  function randomTheme(): void {
-    setColor('background', `#${_getRandomHex()}`);
-    setColor('surface', `#${_getRandomHex()}`);
-  }
-
   function toggleColorSet(): void {
     colorSet.value = colorSet.value === 'brand' ? 'application' : 'brand';
+  }
+
+  function generateRandomTheme(): void {
+    setColor('background', `#${_getRandomHex()}`);
+    setColor('surface', `#${_getRandomHex()}`);
   }
 
   function _getCurrentThemeName(): string {
@@ -118,9 +122,10 @@ const useThemeStore = defineStore( 'theme', () => {
     brandColors,
     applicationColors,
     setColor,
+    getColor,
     setDarkMode,
-    randomTheme,
-    toggleColorSet
+    toggleColorSet,
+    generateRandomTheme
   }
 });
 
