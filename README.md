@@ -2,8 +2,8 @@
 
 A quick and easy way to try out themes for websites built with Material Design as the underlying design language.
 
-<!-- refrence mp4 in public folder -->
-![Build-a-theme demo video](public/build-a-theme.mp4)
+https://user-images.githubusercontent.com/32515201/235526258-fca17039-a32d-479f-9473-6697c4c96994.mp4
+
 
 ## Features
 
