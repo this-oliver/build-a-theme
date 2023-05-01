@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import BaseBtn from '@/components/base/BaseBtn.vue';
+import { useClipboard } from '@/composables/useClipboard';
 import type { Color } from '@/stores/theme-store';
 import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed, ref, watch } from 'vue';
 
 const themeStore = useThemeStore();
+const { copyToClipboard } = useClipboard();
 
 const props = defineProps({
   color: {
@@ -78,7 +80,9 @@ watch(() => props.color.value, (value) => {
           class="text-end"
           cols="auto">
           <v-card-subtitle>
-            <v-sheet class="pa-1">
+            <v-sheet
+              :class="`clickable pa-1 rounded text-${themeStore.dark ? 'white' : 'black'}`"
+              @click="copyToClipboard(color.value, `Copied '${color.label}' value (${color.value})`)">
               {{ color.value }}
               <v-icon
                 :color="color.value"
@@ -145,3 +149,9 @@ watch(() => props.color.value, (value) => {
     </v-navigation-drawer>
   </div>
 </template>
+
+<style>
+.clickable {
+  cursor: pointer;
+}
+</style>
