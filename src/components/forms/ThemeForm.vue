@@ -5,6 +5,8 @@ import { useThemeStore } from '@/stores/theme-store';
 import type { PropType } from 'vue';
 import { computed, ref, watch } from 'vue';
 
+const specialCases = [ 'on-background', 'on-surface' ]; // These colors that are used for text should be black or white depending on the theme
+
 const themeStore = useThemeStore();
 
 const props = defineProps({
@@ -35,14 +37,36 @@ function deactivate(){
   hex.value = props.color.value;
 }
 
-const textColor = computed(() => {
-  const specialCase = [ 'on-background', 'on-surface' ]
-  if(specialCase.includes(props.color.label)){
-    
-    return themeStore.dark ? 'black' : 'white';
+const btnColor = computed<string>(() => {
+  let color = props.color.value;
+
+  if(specialCases.includes(props.color.label)){
+    if(props.color.label === 'on-background'){
+      // return background color
+      color = themeStore.colors.find((color) => color.label === 'background')!.value;
+    } else {
+      // return surface color
+      color = themeStore.colors.find((color) => color.label === 'surface')!.value;
+    }
   }
 
-  return props.color.value;
+  return color;
+});
+
+const textColor = computed<string>(() => {
+  let color: string | undefined = undefined;
+
+  if(specialCases.includes(props.color.label)){
+    if(props.color.label === 'on-background'){
+      // return background color
+      color = themeStore.colors.find((color) => color.label === 'on-background')!.label;
+    } else {
+      // return surface color
+      color = themeStore.colors.find((color) => color.label === 'on-surface')!.label;
+    }
+  }
+
+  return color ? `text-${color}` : '';
 });
 
 watch(() => props.color.value, (value) => {
@@ -56,8 +80,8 @@ watch(() => props.color.value, (value) => {
     <div>
       <base-btn
         block
-        :class="`text-${textColor}`"
-        :color="props.color.value"
+        :class="`${textColor}`"
+        :color="btnColor"
         :disabled="props.readOnly"
         @click="toggleActivate">
         {{ props.color.label }}
