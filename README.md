@@ -2,6 +2,9 @@
 
 A quick and easy way to try out themes for websites built with Material Design as the underlying design language.
 
+<!-- refrence mp4 in public folder -->
+![Build-a-theme demo video](public/build-a-theme.mp4)
+
 ## Features
 
 - [x] Modify the theme colors 🖍️
@@ -14,4 +17,4 @@ Notes:
 
 ## License
 
-This repository is licensed under the [MIT License](LICENSE).
+[MIT License](LICENSE) - [@this-oliver](https://www.oliverrr.net)
