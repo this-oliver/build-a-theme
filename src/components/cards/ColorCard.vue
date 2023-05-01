@@ -74,8 +74,6 @@ const getColor = computed<string>(() => {
       </v-col>
     </v-row>
 
-    <v-card-actions>
-      <slot name="actions"></slot>
-    </v-card-actions>
+    <slot name="actions"></slot>
   </v-card>
 </template>

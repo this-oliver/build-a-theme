@@ -38,55 +38,48 @@ const getConfigColor = computed<string>(() => {
 </script>
 
 <template>
-  <v-row no-gutters>
+  <div>
     <v-divider class="border-opacity-50"></v-divider>
     <v-sheet
       class="mt-2 pa-1"
       rounded="lg"
       :color="getConfigColor">
-      <v-col class="mt-2 mt-md-0">
-        <slot name="title">
-          <v-row justify="space-between">
-            <v-col>
-              <h2>{{ props.title }}</h2>
-            </v-col>
-            <v-col cols="auto">
-              <v-icon :icon="props.icon"></v-icon>
-            </v-col>
-          </v-row>
-        </slot>
-      </v-col>
+      <slot
+        name="title"
+        class="mt-2 mt-md-0">
+        <v-row justify="space-between">
+          <v-col>
+            <h2>{{ props.title }}</h2>
+          </v-col>
+          <v-col cols="auto">
+            <v-icon :icon="props.icon"></v-icon>
+          </v-col>
+        </v-row>
+      </slot>
     
       <v-divider class="border-opacity-0"></v-divider>
-    
-      <v-col>
-        <slot name="description">
-          <p v-if="props.description">{{ props.description }}</p>
-        </slot>
-      </v-col>
+      <slot name="description">
+        <p
+          v-if="props.description"
+          style="padding: 1rem 0;">{{ props.description }}</p>
+      </slot>
 
-      <v-divider class="border-opacity-0"></v-divider>
-
-      <v-col>
-        <slot name="options">
-          <base-btn
-            v-for="action in actions"
-            :key="action.option.label"
-            class="mr-1 mt-1"
-            :outlined="action.option.value"
-            :tonal="!action.option.value"
-            size="small"
-            @click="action.toggle">
-            <span :style="`font-weight: ${action.option.value ? 'bold' : 'normal'};`">{{ action.option.label }}</span>
-          </base-btn>
-        </slot>
-      </v-col>
+      <slot name="options">
+        <base-btn
+          v-for="action in actions"
+          :key="action.option.label"
+          class="mr-1 mt-1"
+          :outlined="action.option.value"
+          :tonal="!action.option.value"
+          size="small"
+          @click="action.toggle">
+          <span :style="`font-weight: ${action.option.value ? 'bold' : 'normal'};`">{{ action.option.label }}</span>
+        </base-btn>
+      </slot>
     </v-sheet>
 
     <v-divider class="border-opacity-25 my-2"></v-divider>
 
-    <v-col cols="12">
-      <slot></slot>
-    </v-col>
-  </v-row>
+    <slot></slot>
+  </div>
 </template>
