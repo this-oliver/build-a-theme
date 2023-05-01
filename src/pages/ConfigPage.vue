@@ -11,7 +11,7 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-  <base-page title="Configure Theme">
+  <base-page title="Build Theme">
     <v-row
       class="config-content"
       justify="center"

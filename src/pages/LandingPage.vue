@@ -82,7 +82,7 @@ const icons: Icons[] = [
           block
           large
           color="primary"
-          to="/build">
+          to="/config">
           Build your theme
         </base-btn>
       </v-col>
