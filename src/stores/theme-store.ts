@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import type { ThemeDefinition } from 'vuetify';
 import { useTheme } from 'vuetify';
 
@@ -9,6 +9,16 @@ import { useTheme } from 'vuetify';
 //    vm.proxy?.$forceUpdate()
 //  }
 //}
+
+/**
+ * ConfigMode
+ * 
+ * @description ConfigSet is used to determine which colors are displayed in the color picker.
+ * 
+ * @property {string} brand - Display brand colors. This includes primary, secondary, info, success, warning, error, surface and background.
+ * @property {string} application - Display application colors. This includes brand colors and intricate colors such as on-background and on-surface.
+ */
+type ColorSet = 'brand' | 'application';
 
 export interface Color {
   label: string;
@@ -21,6 +31,8 @@ const applicationColorSet = [ ...brandColorSet, 'on-background', 'on-surface' ];
 
 const useThemeStore = defineStore( 'theme', () => {
   const vTheme = useTheme();
+
+  const colorSet = ref<ColorSet>('brand');
 
   const dark = computed<boolean>(() => vTheme.global.name.value === 'dark')
 
@@ -77,6 +89,15 @@ const useThemeStore = defineStore( 'theme', () => {
     vTheme.global.name.value = dark ? 'dark' : 'light';
   }
 
+  function randomTheme(): void {
+    setColor('background', `#${_getRandomHex()}`);
+    setColor('surface', `#${_getRandomHex()}`);
+  }
+
+  function toggleColorSet(): void {
+    colorSet.value = colorSet.value === 'brand' ? 'application' : 'brand';
+  }
+
   function _getCurrentThemeName(): string {
     return vTheme.global.name.value;
   }
@@ -85,16 +106,12 @@ const useThemeStore = defineStore( 'theme', () => {
     return name ? vTheme.themes.value[name] : vTheme.global.current.value;
   }
 
-  function randomTheme(): void {
-    setColor('background', `#${_getRandomHex()}`);
-    setColor('surface', `#${_getRandomHex()}`);
-  }
-
   function _getRandomHex(): string {
     return Math.floor(Math.random() * 16777215).toString(16);
   }
 
   return {
+    colorSet,
     dark,
     colors,
     mainColors,
@@ -102,7 +119,8 @@ const useThemeStore = defineStore( 'theme', () => {
     applicationColors,
     setColor,
     setDarkMode,
-    randomTheme
+    randomTheme,
+    toggleColorSet
   }
 });
 

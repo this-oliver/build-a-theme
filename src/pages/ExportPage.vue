@@ -4,8 +4,13 @@ import BasePage from '@/components/base/BasePage.vue';
 import ConfigCard from '@/components/cards/ConfigCard.vue';
 import ContentCard from '@/components/cards/ContentCard.vue';
 import { useThemeStore } from '@/stores/theme-store';
+import { computed } from 'vue';
 
 const themeStore = useThemeStore();
+
+const colors = computed(() => {
+  return themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.brandColors;
+});
 
 </script>
 
@@ -25,7 +30,7 @@ const themeStore = useThemeStore();
 
           </template>
           <config-card
-            :colors="themeStore.applicationColors"
+            :colors="colors"
             :dark="themeStore.dark" />
         </content-card>
       </v-col>

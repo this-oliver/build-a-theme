@@ -14,10 +14,9 @@ const props = defineProps({
 
 const themeStore = useThemeStore();
 
-const allColors = ref<boolean>(false);
 const darkMode = ref<boolean>(themeStore.dark);
 
-const colors = computed(() => allColors.value ? themeStore.applicationColors : themeStore.brandColors);
+const colors = computed(() => themeStore.colorSet === 'application' ? themeStore.applicationColors : themeStore.brandColors);
 
 watch(darkMode, (value) => {
   themeStore.setDarkMode(value);
@@ -43,9 +42,9 @@ watch(darkMode, (value) => {
       <base-btn
         class="mr-1 mt-1"
         size="small"
-        :outlined="allColors"
+        :outlined="themeStore.colorSet === 'application'"
         :disabled="props.readOnly"
-        @click="allColors = !allColors">
+        @click="themeStore.toggleColorSet">
         All Colors
         <v-icon icon="mdi-palette-swatch-outline"/>
       </base-btn>
@@ -65,7 +64,7 @@ watch(darkMode, (value) => {
         v-for="color in colors"
         :key="color.label"
         cols="11"
-        :md="allColors ? 11 : 6">
+        :md="themeStore.colorSet === 'application' ? 11 : 6">
         <theme-form :color="color"/>
       </v-col>
     </v-row>
