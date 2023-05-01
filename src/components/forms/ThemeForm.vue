@@ -103,8 +103,7 @@ watch(() => props.color.value, (value) => {
           size="small"
           :disabled="props.readOnly"
           @click="toggleActivate">
-          Modify
-          <v-icon icon="mdi-pencil"></v-icon>
+          Change {{ color.label }}
         </base-btn>
       </v-card-actions>
     </v-card>
