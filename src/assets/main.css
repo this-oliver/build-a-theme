@@ -1,0 +1,17 @@
+.config-items > * {
+  padding-top: 5vh;
+}
+
+@media (min-width: 600px) {
+  .config-content > * {
+    padding-bottom: 50px;
+    
+    /* fix height and force scroll vertically */
+    max-height: 75vh;
+    overflow-y: scroll;
+
+    /* hide scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}

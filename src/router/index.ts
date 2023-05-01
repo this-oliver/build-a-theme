@@ -10,9 +10,14 @@ const router = createRouter({
       component: LandingPage
     },
     {
-      path: '/build',
-      name: 'build',
-      component: () => import('@/pages/BuildPage.vue')
+      path: '/config',
+      name: 'config',
+      component: () => import('@/pages/ConfigPage.vue')
+    },
+    {
+      path: '/preview',
+      name: 'preview',
+      component: () => import('@/pages/PreviewPage.vue')
     },
     {
       path: '/export',

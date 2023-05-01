@@ -1,3 +1,4 @@
+import '@/assets/main.css'
 import { createApp } from 'vue'
 import { setupPinia } from './plugins/pinia-plugin'
 import { setupVuetify } from './plugins/vuetify-plugin'
