@@ -18,19 +18,20 @@ const isSmallScreen = computed(() => {
 
 <template>
   <v-app-bar
+    id="navbar"
     app
-    flat
-    class="bar-container">
+    flat>
     <v-app-bar-nav-icon
       v-if="isSmallScreen"
       @click="drawer.toggle" />
 
-    <v-spacer v-if="isSmallScreen" />
-
     <router-link
-      class="bar-logo plain"
+      class="pa-1"
       to="/">
-      <h1>🖍️</h1>
+      <span id="logo">
+        <span id="logo-emoji">🖍️</span>
+        <span id="logo-name">Build-A-Theme</span>
+      </span>
     </router-link>
 
     <v-spacer />
@@ -54,24 +55,39 @@ const isSmallScreen = computed(() => {
 </template>
 
 <style scoped>
-.bar-container {
-  position: relative;
+#navbar {
+  padding: 0 1rem;
 }
 
-.bar-logo {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+#logo {
+  font-size: 1.5rem;
 }
 
-.plain {
+#logo > * {
+  padding: 0 0.5rem;
+  vertical-align: middle;
+}
+
+#logo-emoji {
+  font-size: 2rem;
+}
+
+#logo-name {
+  font-weight: bold;
+}
+
+a {
   color: inherit;
   text-decoration: none;
 }
 
 @media (min-width: 800px) {
-  .bar-container{
-    padding: 0 2rem;
+  #navbar {
+    padding: 0 3rem;
+  }
+
+  #logo {
+    font-size: 2rem;
   }
 }
 </style>
