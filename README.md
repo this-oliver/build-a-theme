@@ -4,7 +4,6 @@ A quick and easy way to try out themes for websites built with Material Design a
 
 https://user-images.githubusercontent.com/32515201/235526258-fca17039-a32d-479f-9473-6697c4c96994.mp4
 
-
 ## Features
 
 - [x] Modify the theme colors 🖍️
